@@ -1,0 +1,20 @@
+{
+  "name": "squidink",
+  "version": "1.0.0",
+  "description": "Note taking application by Squid Inc.",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Notes",
+    "Tasks",
+    "Productivity"
+  ],
+  "author": "Squid Inc.",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^35.0.3"
+  }
+}
