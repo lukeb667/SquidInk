@@ -7,5 +7,7 @@
 
 Guide here: https://www.electronjs.org/docs/latest/tutorial/tutorial-first-app 
 
+I forgot the name of the framework that Ryan mentioned (tehe), so that hasn't been added yet.
+
 ### Description
 Note taking app. 
