@@ -1,0 +1,14 @@
+root = true
+
+[*]
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = false
+
+[{*.{ts,tsx,html,css}}]
+indent_style = tab
+indent_size = 4
+
+[{.editorconfig,.gitignore,.gitattributes,package.json,eslintrc.js,tsconfig.json,webpack.config.js}]
+indent_style = space
+indent_size = 2
