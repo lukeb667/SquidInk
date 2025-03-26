@@ -1,9 +1,11 @@
+import { Button } from "@heroui/button"
 import { useState } from "react"
-import reactLogo from "./assets/react.svg"
+
+import reactLogo from "@/assets/react.svg"
 import viteLogo from "/electron-vite.animate.svg"
 
 export default function App() {
-	const [count, setCount] = useState(0)
+	const [count, setCount] = useState(0);
 
 	return (
 		<>
@@ -18,10 +20,16 @@ export default function App() {
 
 			<h1>Vite + React</h1>
 
-			<div className="card flex flex-col justify-center items-center gap-y-2">
-				<button className="w-1/2" onClick={ () => setCount((count) => count + 1) }>
+			<div className="card flex flex-col justify-center items-center gap-y-4">
+				<Button
+					className="dark w-1/2"
+					color="default"
+					radius="full"
+					variant="shadow"
+					onPress={ () => setCount((count) => count + 1) }
+				>
 					count is {count}
-				</button>
+				</Button>
 
 				<p>
 					Edit <code>src/App.tsx</code> and save to test HMR
@@ -32,5 +40,5 @@ export default function App() {
 				Click on the Vite and React logos to learn more
 			</p>
 		</>
-	)
+	);
 }
