@@ -1,0 +1,8 @@
+# Default line ending behavior
+* text=auto
+
+# Types of files to normalize
+*.css text
+*.tsx text
+*.ts text
+*.json text
