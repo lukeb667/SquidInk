@@ -116,3 +116,9 @@ button:focus-visible {
 .read-the-docs {
 	color: #888;
 }
+
+.tiptap {
+	:first-child {
+	  margin-top: 0;
+	}
+  }
