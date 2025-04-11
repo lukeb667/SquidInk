@@ -6,7 +6,6 @@ import Document from '@tiptap/extension-document';
 import { EditorContent, useEditor } from '@tiptap/react';
 import FontFamily from '@tiptap/extension-font-family';
 import Heading from '@tiptap/extension-heading';
-import { IpcMainInvokeEvent } from "electron";
 import { JSX } from 'react';
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
