@@ -6,6 +6,7 @@ import Document from '@tiptap/extension-document';
 import { EditorContent, useEditor } from '@tiptap/react';
 import FontFamily from '@tiptap/extension-font-family';
 import Heading from '@tiptap/extension-heading';
+import { IpcMainInvokeEvent } from "electron";
 import { JSX } from 'react';
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
@@ -36,6 +37,18 @@ export default function RichTextEditor(): JSX.Element | null {
 		},
 		content: `<p><span style="color: #958DF1">Oh, for some reason that\'s purple.</span></p>`,
 	});
+
+	const handleSave = async () => {
+		if (!editor) {
+			return;
+		}
+
+		const { content } = editor.getJSON();
+		const json = JSON.stringify(content, null, 2);
+
+		const filePath = await window.ipcRenderer.invoke("saveFile", json);
+		console.log(`Saved file to ${filePath}`);
+	}
 
 	return editor? (
 		<div className={theme}>
@@ -142,7 +155,7 @@ export default function RichTextEditor(): JSX.Element | null {
 					</Button>
 
 					<Button
-						onPress={() => editor.chain().focus().toggleBulletList().run()}
+						onPress={handleSave}
 						className={editor.isActive('bulletList') ? 'is-active' : ''}
 					>
 						Save
