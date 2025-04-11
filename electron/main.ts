@@ -1,11 +1,24 @@
 import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
+import fs from "node:fs";
 import { open } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+//
+// Create the default file save location
+//
+
+const home = os.homedir();
+const defaultPath = `${home}${path.sep}Documents${path.sep}SquidInk`;
+
+if (!fs.existsSync(defaultPath)) {
+	fs.mkdirSync(defaultPath);
+}
 
 // The built directory structure
 //
@@ -76,6 +89,8 @@ ipcMain.handle("saveFile", async (_event: Electron.IpcMainInvokeEvent, data: str
 	const result = await dialog.showSaveDialog({
 		title: "Save file",
 		buttonLabel: "Save",
+		defaultPath: `${defaultPath}${path.sep}Untitled.json`,
+		properties: ["createDirectory", "showOverwriteConfirmation"],
 	});
 
 	const { canceled, filePath } = result;
@@ -84,6 +99,6 @@ ipcMain.handle("saveFile", async (_event: Electron.IpcMainInvokeEvent, data: str
 		return;
 	}
 
-	const file = await open(filePath, "w");
+	const file = await open(`${filePath}${path.extname(filePath) === ".json"? "" : ".json"}`, "w");
 	await file.writeFile(data);
 });
