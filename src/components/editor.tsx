@@ -23,18 +23,19 @@ export default function RichTextEditor(): JSX.Element | null {
 	const editor = useEditor({
 		extensions: [
 			Document, Paragraph, Text, BulletList, OrderedList,
-			ListItem, FontFamily, Bold, Heading, Color, TextStyle, Heading,
+			ListItem, FontFamily, Bold, Heading, Color, TextStyle, 
+			Heading,
 
 			TextAlign.configure({
-				types: ['heading', 'paragraph']
-			})
+				types: ['heading', 'paragraph'],
+			  }),
 		],
 		editorProps: {
 			attributes: {
 				class: "border border-white px-2 focus:outline-none h-screen"
 			}
 		},
-		content: `<p><span style="color: #958DF1">Oh, for some reason that\'s purple.</span></p>`,
+		content: `<p><span style="color: #958DF1">This is the new default text</span></p>`,
 	});
 
 	const handleSave = async () => {
@@ -73,7 +74,7 @@ export default function RichTextEditor(): JSX.Element | null {
 						className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
 						data-testid="setPurple"
 					>
-						B
+						Bold
 					</Button>
 
 					<Button
@@ -133,17 +134,17 @@ export default function RichTextEditor(): JSX.Element | null {
 					</Button>
 
 					<Button
-						onPress={() => editor.chain().focus().setTextAlign('left').run()}
-						className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
+						onPress={() => editor.chain().focus().setTextAlign('center').run()}
+						className={editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''}
 					>
-						Left Align
+						Center Align
 					</Button>
 
 					<Button
-						onPress={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-						className={editor.isActive({ level: 1 }) ? 'is-active' : ''}
-					>
-						Toggle H1
+						onPress={() => console.log(editor.chain().focus()) }
+						className={editor.isActive({ level: 2 }) ? 'is-active' : ''}
+					  >
+						Toggle H2
 					</Button>
 
 					<Button
