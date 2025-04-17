@@ -70,21 +70,6 @@ export default function RichTextEditor(): JSX.Element | null {
 					</Button>
 
 					<Button
-						onPress={() => editor.chain().focus().toggleBold().run()}
-						className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
-						data-testid="setPurple"
-					>
-						Bold
-					</Button>
-
-					<Button
-						onPress={() => editor.chain().focus().setColor('#958DF1').run()}
-						className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
-						data-testid="setPurple"
-					>
-						Purple
-					</Button>
-					<Button
 						onPress={() => editor.chain().focus().setColor('#F98181').run()}
 						className={editor.isActive('textStyle', { color: '#F98181' }) ? 'is-active' : ''}
 						data-testid="setRed"
@@ -105,20 +90,7 @@ export default function RichTextEditor(): JSX.Element | null {
 					>
 						Yellow
 					</Button>
-					<Button
-						onPress={() => editor.chain().focus().setColor('#70CFF8').run()}
-						className={editor.isActive('textStyle', { color: '#70CFF8' }) ? 'is-active' : ''}
-						data-testid="setBlue"
-					>
-						Blue
-					</Button>
-					<Button
-						onPress={() => editor.chain().focus().setColor('#94FADB').run()}
-						className={editor.isActive('textStyle', { color: '#94FADB' }) ? 'is-active' : ''}
-						data-testid="setTeal"
-					>
-						Teal
-					</Button>
+
 					<Button
 						onPress={() => editor.chain().focus().setColor('#B9F18D').run()}
 						className={editor.isActive('textStyle', { color: '#B9F18D' }) ? 'is-active' : ''}
@@ -126,6 +98,31 @@ export default function RichTextEditor(): JSX.Element | null {
 					>
 						Green
 					</Button>
+
+					<Button
+						onPress={() => editor.chain().focus().setColor('#94FADB').run()}
+						className={editor.isActive('textStyle', { color: '#94FADB' }) ? 'is-active' : ''}
+						data-testid="setTeal"
+					>
+						Teal
+					</Button>
+
+					<Button
+						onPress={() => editor.chain().focus().setColor('#70CFF8').run()}
+						className={editor.isActive('textStyle', { color: '#70CFF8' }) ? 'is-active' : ''}
+						data-testid="setBlue"
+					>
+						Blue
+					</Button>
+
+					<Button
+						onPress={() => editor.chain().focus().setColor('#958DF1').run()}
+						className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
+						data-testid="setPurple"
+					>
+						Purple
+					</Button>
+
 					<Button
 						onPress={() => editor.chain().focus().unsetColor().run()}
 						data-testid="unsetColor"
@@ -134,10 +131,24 @@ export default function RichTextEditor(): JSX.Element | null {
 					</Button>
 
 					<Button
+						onPress={() => editor.chain().focus().setTextAlign('left').run()}
+						className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
+					>
+						Left Align
+					</Button>
+
+					<Button
 						onPress={() => editor.chain().focus().setTextAlign('center').run()}
 						className={editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''}
 					>
 						Center Align
+					</Button>
+
+					<Button
+						onPress={() => editor.chain().focus().setTextAlign('right').run()}
+						className={editor.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
+					>
+						Right Align
 					</Button>
 
 					<Button
