@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@heroui/button": "^2.2.16",
+    "@heroui/react": "^2.7.6",
     "@heroui/system": "2.4.12",
     "@heroui/theme": "2.4.12",
     "@heroui/use-theme": "^2.1.6",
@@ -34,7 +35,9 @@
     "autoprefixer": "^10.4.21",
     "framer-motion": "^12.6.2",
     "react": "^19.1.0",
+    "react-colorful": "^5.6.1",
     "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
     "tailwindcss": "^3.4.17",
     "tiptap": "^1.32.2",
     "vite-tsconfig-paths": "^5.1.4"
