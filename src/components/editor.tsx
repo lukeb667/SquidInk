@@ -54,14 +54,14 @@ export default function RichTextEditor(): JSX.Element | null {
 
 			TextAlign.configure({
 				types: ['heading', 'paragraph'],
-			  }),
+			}),
 		],
 		editorProps: {
 			attributes: {
-				class: "border border-white px-2 focus:outline-none h-screen"
+				class: "border border-white px-2 focus:outline-none h-screen text-white"
 			}
 		},
-		content: `<p><span style="color: #958DF1">This is the new default text</span></p>`,
+		content: `<p><span style="color: white">This is the new default text</span></p>`,
 	});
 
 	const handleSave = async () => {
@@ -282,7 +282,7 @@ export default function RichTextEditor(): JSX.Element | null {
 
 			<div className="flex-1 overflow-auto px-[20%] pt-5 pb-2">
 				<EditorContent
-					className="w-full h-full overflow-scroll"
+					className="prose w-full h-full overflow-scroll marker:text-inherit"
 					editor={editor}
 				/>
 			</div>

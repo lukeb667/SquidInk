@@ -43,6 +43,7 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.13.13",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.5",
