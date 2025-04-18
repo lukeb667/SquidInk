@@ -12,5 +12,5 @@ export default {
     extend: {},
   },
   darkMode: "class",
-  plugins: [heroui(), require('@tailwindcss/typography')]
+  plugins: [heroui()]
 } satisfies Config;

@@ -126,16 +126,6 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
-					onPress={() => editor.chain().focus().setColor('#958DF1').run()}
-					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-purple-500 text-white rounded-md ${
-						editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''
-					}`}
-					data-testid="setPurple"
-					startContent={<MdColorLens />}
-					isIconOnly
-				/>
-
-				<Button
 					onPress={() => editor.chain().focus().setColor('#F98181').run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-red-500 text-white rounded-md ${
 						editor.isActive('textStyle', { color: '#F98181' }) ? 'is-active' : ''
@@ -166,11 +156,11 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
-					onPress={() => editor.chain().focus().setColor('#70CFF8').run()}
-					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-blue-500 text-white rounded-md ${
-						editor.isActive('textStyle', { color: '#70CFF8' }) ? 'is-active' : ''
+					onPress={() => editor.chain().focus().setColor('#B9F18D').run()}
+					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-green-500 text-white rounded-md ${
+						editor.isActive('textStyle', { color: '#B9F18D' }) ? 'is-active' : ''
 					}`}
-					data-testid="setBlue"
+					data-testid="setGreen"
 					startContent={<MdColorLens />}
 					isIconOnly
 				/>
@@ -186,11 +176,21 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
-					onPress={() => editor.chain().focus().setColor('#B9F18D').run()}
-					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-green-500 text-white rounded-md ${
-						editor.isActive('textStyle', { color: '#B9F18D' }) ? 'is-active' : ''
+					onPress={() => editor.chain().focus().setColor('#70CFF8').run()}
+					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-blue-500 text-white rounded-md ${
+						editor.isActive('textStyle', { color: '#70CFF8' }) ? 'is-active' : ''
 					}`}
-					data-testid="setGreen"
+					data-testid="setBlue"
+					startContent={<MdColorLens />}
+					isIconOnly
+				/>
+
+				<Button
+					onPress={() => editor.chain().focus().setColor('#958DF1').run()}
+					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-purple-500 text-white rounded-md ${
+						editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''
+					}`}
+					data-testid="setPurple"
 					startContent={<MdColorLens />}
 					isIconOnly
 				/>
