@@ -27,7 +27,8 @@ import { MdSave,
 	MdInvertColorsOff,
 	MdColorLens,
 	MdOutlineFontDownload,
-	MdFormatBold } from "react-icons/md";
+	MdFormatBold, 
+	MdFileOpen} from "react-icons/md";
 import { LuHeading1 } from "react-icons/lu";
 
 import '@/styles/styles.css'
@@ -80,12 +81,7 @@ export default function RichTextEditor(): JSX.Element | null {
 		if (!editor) {
 			return;
 		}
-
-		const { content } = editor.getJSON();
-		const json = JSON.stringify(content, null, 2);
-
-		const filePath = await window.ipcRenderer.invoke("saveFile", json);
-		console.log(`Saved file to ${filePath}`);
+		console.log("Not Implemented!")
 	}
 
 	const [selectedOption, setSelectedOption] = React.useState(new Set(["left"]));
@@ -290,6 +286,14 @@ export default function RichTextEditor(): JSX.Element | null {
 					startContent={<MdSave />}
 					isIconOnly
 				/>
+
+				<Button
+					onPress={handleLoad}
+					className="h-6 !w-6 m-[2px] min-w-0 p-0 justify-center rounded-md"
+					startContent={<MdFileOpen />}
+					isIconOnly
+				/>
+
 			</div>
 
 			<div className="flex-1 overflow-auto pt-5 pb-2">
