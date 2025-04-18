@@ -76,6 +76,18 @@ export default function RichTextEditor(): JSX.Element | null {
 		console.log(`Saved file to ${filePath}`);
 	}
 
+	const handleLoad = async () => {
+		if (!editor) {
+			return;
+		}
+
+		const { content } = editor.getJSON();
+		const json = JSON.stringify(content, null, 2);
+
+		const filePath = await window.ipcRenderer.invoke("saveFile", json);
+		console.log(`Saved file to ${filePath}`);
+	}
+
 	const [selectedOption, setSelectedOption] = React.useState(new Set(["left"]));
 
 	const labelsMap = {
@@ -280,9 +292,9 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 			</div>
 
-			<div className="flex-1 overflow-auto px-[20%] pt-5 pb-2">
+			<div className="flex-1 overflow-auto pt-5 pb-2">
 				<EditorContent
-					className="prose w-full h-full overflow-scroll marker:text-inherit"
+					className="prose w-full h-full overflow-auto marker:text-inherit"
 					editor={editor}
 				/>
 			</div>
