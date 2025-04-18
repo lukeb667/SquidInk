@@ -19,7 +19,7 @@
   }
   
   .task-input button {
-    padding: 1px 16px;
+    padding: 1px 13px;
     background-color: #004257;
     color: white;
     border: solid;
@@ -60,7 +60,7 @@
     color: white;
     border: none;
     border-radius: 4px;
-    padding: 5px 10px;
+    padding: 4px 10px;
     cursor: pointer;
   }
   

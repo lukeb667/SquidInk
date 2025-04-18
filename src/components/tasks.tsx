@@ -46,7 +46,7 @@ export default function TaskTracker() {
           placeholder="Add a new task..."
           onKeyDown={(e) => e.key === 'Enter' && addTask()}
         />
-        <button onClick={addTask}>Add Task</button>
+        <button onClick={addTask}>+</button>
       </div>
       
       <ul className="task-list">
@@ -55,7 +55,7 @@ export default function TaskTracker() {
             <span onClick={() => toggleTask(task.id)}>
               {task.text}
             </span>
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
+            <button onClick={() => deleteTask(task.id)}>×</button>
           </li>
         ))}
       </ul>
