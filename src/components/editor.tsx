@@ -104,6 +104,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				style={{ width: "100%" }} // Ensure buttons stay within the div
 			>
 				<input
+					title= "Select a text color"
 					type="color"
 					onInput={(event) => editor.chain().focus().setColor((event.target as HTMLInputElement).value).run()}
 					value={editor.getAttributes('textStyle').color}
@@ -113,6 +114,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title= "Set font to Inter"
 					color="default"
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center rounded-md ${
 						editor.isActive('textStyle', { fontFamily: 'Inter' }) ? 'is-active' : ''
@@ -124,6 +126,7 @@ export default function RichTextEditor(): JSX.Element | null {
 					/>
 
 				<Button
+					title="Toggle bold"
 					onPress={() => editor.chain().focus().toggleBold().run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center rounded-md ${
 						editor.isActive('bold') ? 'is-active' : ''
@@ -134,6 +137,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Set text color to red"
 					onPress={() => editor.chain().focus().setColor('#F98181').run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-red-500 text-white rounded-md ${
 						editor.isActive('textStyle', { color: '#F98181' }) ? 'is-active' : ''
@@ -144,6 +148,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Set text color to orange"
 					onPress={() => editor.chain().focus().setColor('#FBBC88').run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-orange-500 text-white rounded-md ${
 						editor.isActive('textStyle', { color: '#FBBC88' }) ? 'is-active' : ''
@@ -154,6 +159,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Set text color to yellow"
 					onPress={() => editor.chain().focus().setColor('#FAF594').run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-yellow-500 text-white rounded-md ${
 						editor.isActive('textStyle', { color: '#FAF594' }) ? 'is-active' : ''
@@ -164,6 +170,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Set text color to green"
 					onPress={() => editor.chain().focus().setColor('#B9F18D').run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-green-500 text-white rounded-md ${
 						editor.isActive('textStyle', { color: '#B9F18D' }) ? 'is-active' : ''
@@ -174,6 +181,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Set text color to teal"
 					onPress={() => editor.chain().focus().setColor('#94FADB').run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-teal-500 text-white rounded-md ${
 						editor.isActive('textStyle', { color: '#94FADB' }) ? 'is-active' : ''
@@ -184,6 +192,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Set text color to blue"
 					onPress={() => editor.chain().focus().setColor('#70CFF8').run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-blue-500 text-white rounded-md ${
 						editor.isActive('textStyle', { color: '#70CFF8' }) ? 'is-active' : ''
@@ -194,6 +203,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Set text color to purple"
 					onPress={() => editor.chain().focus().setColor('#958DF1').run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center bg-purple-500 text-white rounded-md ${
 						editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''
@@ -204,6 +214,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Reset text color"
 					onPress={() => editor.chain().focus().unsetColor().run()}
 					className="h-6 !w-6 m-[2px] min-w-0 p-0 justify-center rounded-md"
 					data-testid="unsetColor"
@@ -213,6 +224,7 @@ export default function RichTextEditor(): JSX.Element | null {
 
 				<div className="inline-flex m-[2px]">
 					<Button 
+						title= "Left align"
 						ref={mainButtonRef}
 						className="h-6 min-w-0 p-2 rounded-l-md rounded-r-none m-0 border-r-0"
 					>
@@ -226,6 +238,7 @@ export default function RichTextEditor(): JSX.Element | null {
 					>
 						<DropdownTrigger>
 							<Button 
+								title= "Choose a text alignment"
 								isIconOnly 
 								className="h-6 !w-6 min-w-0 p-0 rounded-r-md rounded-l-none m-0 border-l-0"
 							>
@@ -261,6 +274,7 @@ export default function RichTextEditor(): JSX.Element | null {
 					</div>
 
 				<Button
+					title="Toggle heading"
 					onPress={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center rounded-md ${
 						editor.isActive({ level: 1 }) ? 'is-active' : ''
@@ -271,6 +285,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Toggle bulleted list"
 					onPress={() => editor.chain().focus().toggleBulletList().run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 p-0 justify-center rounded-md ${
 						editor.isActive('bulletList') ? 'is-active' : ''
@@ -281,6 +296,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Save"
 					onPress={handleSave}
 					className="h-6 !w-6 m-[2px] min-w-0 p-0 justify-center rounded-md"
 					startContent={<MdSave />}
@@ -288,6 +304,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
+					title="Open a file (Not currently functional)"
 					onPress={handleLoad}
 					className="h-6 !w-6 m-[2px] min-w-0 p-0 justify-center rounded-md"
 					startContent={<MdFileOpen />}
