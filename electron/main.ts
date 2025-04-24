@@ -40,7 +40,8 @@ let win: BrowserWindow | null;
 
 function createWindow() {
 	win = new BrowserWindow({
-		icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
+		title: "Squid Ink",
+		icon: path.join(__dirname, "..", "public", "squid-ink-logo.png"),
 		width: 1920,
 		height: 1080,
 		webPreferences: {
