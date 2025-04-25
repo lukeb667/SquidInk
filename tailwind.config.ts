@@ -5,7 +5,7 @@ import { heroui } from "@heroui/theme";
 export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@heroui/theme/dist/components/(button|ripple|spinner).js"
+    "./node_modules/@heroui/theme/dist/components/(button|card|date-picker|divider|drawer|input|ripple|spinner|calendar|date-input|form|popover|modal).js"
   ],
 
   theme: {
