@@ -101,3 +101,28 @@ ipcMain.handle("saveFile", async (_event: Electron.IpcMainInvokeEvent, data: str
 	const file = await open(`${filePath}${path.extname(filePath) === ".json"? "" : ".json"}`, "w");
 	await file.writeFile(data);
 });
+
+ipcMain.handle('loadFile', async (event) => {
+	try {
+	  // Open file dialog
+	  const { canceled, filePaths } = await dialog.showOpenDialog({
+		properties: ['openFile'],
+		filters: [
+		  { name: 'JSON Files', extensions: ['json'] },
+		  { name: 'All Files', extensions: ['*'] }
+		]
+	  });
+  
+	  if (canceled || filePaths.length === 0) {
+		return null;
+	  }
+  
+	  const filePath = filePaths[0];
+	  const fileContent = fs.readFileSync(filePath, 'utf-8');
+	  
+	  return fileContent;
+	} catch (error) {
+	  console.error('Error loading file:', error);
+	  throw error; // This will be caught in the renderer process
+	}
+  });

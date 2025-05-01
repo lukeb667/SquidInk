@@ -110,8 +110,20 @@ export default function RichTextEditor(): JSX.Element | null {
 		if (!editor) {
 			return;
 		}
-		console.log("Not Implemented!")
-	}
+	
+		try {
+			// Invoke the IPC renderer to open a file dialog and get the file content
+			const fileContent = await window.ipcRenderer.invoke("loadFile");
+			
+			if (fileContent) {
+				// Parse the JSON content and set it in the editor
+				const content = JSON.parse(fileContent);
+				editor.commands.setContent( content );
+			}
+		} catch (error) {
+			console.error("Error loading file:", error);
+		}
+	};
 
 	const [selectedOption, setSelectedOption] = React.useState(new Set(["left"]));
 
@@ -503,7 +515,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<Button
-					title="Open a file (Not currently functional)"
+					title="Open File"
 					onPress={handleLoad}
 					className="h-6 !w-6 m-[2px] min-w-0 justify-center rounded-md"
 					startContent={<MdFileOpen />}
