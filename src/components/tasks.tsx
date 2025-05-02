@@ -5,11 +5,13 @@ type Task = {
   id: number;
   text: string;
   completed: boolean;
+  details?: string;
 };
 
 export default function TaskTracker() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState('');
+  const [taskDetails, setTaskDetails] = useState('');
 
   const addTask = () => {
     if (newTask.trim() === '') return;
@@ -17,11 +19,13 @@ export default function TaskTracker() {
     const task: Task = {
       id: Date.now(),
       text: newTask,
-      completed: false
+      completed: false,
+      details: taskDetails.trim() || undefined
     };
     
     setTasks([...tasks, task]);
     setNewTask('');
+    setTaskDetails('');
   };
 
   const toggleTask = (id: number) => {
@@ -46,19 +50,33 @@ export default function TaskTracker() {
           placeholder="Add a new task..."
           onKeyDown={(e) => e.key === 'Enter' && addTask()}
         />
+        <input
+          type="text"
+          value={taskDetails}
+          onChange={(e) => setTaskDetails(e.target.value)}
+          placeholder="Enter details (op)"
+        />
         <button onClick={addTask}>+</button>
       </div>
       
       <ul className="task-list">
-        {tasks.map(task => (
+        {tasks.map(task => {
+          //console.log("It got to here: " + task.details);
+          return (
           <li key={task.id} className={task.completed ? 'completed' : ''}>
             <span onClick={() => toggleTask(task.id)}>
               {task.text}
             </span>
+            {task.details && (
+              <span className="task-details">
+                {task.details}
+              </span>
+            )}
             <button onClick={() => deleteTask(task.id)}>×</button>
-          </li>
-        ))}
-      </ul>
+            </li>
+              );
+            })}
+          </ul>
     </div>
   );
 }

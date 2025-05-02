@@ -71,6 +71,7 @@ type Task = {
 	text: string;
 	date: DateValue;
 	completed: boolean;
+  details?: string;
 };
 
 export default function RichTextEditor(): JSX.Element | null {
@@ -147,12 +148,13 @@ export default function RichTextEditor(): JSX.Element | null {
 	// task array
 	const [tasks, setTasks] = React.useState<Task[]>([]);
 
-	const addTask = (name: string, date: DateValue) => {
+	const addTask = (name: string, date: DateValue, details: string) => {
 		const task: Task = {
 			id: Date.now(),
 			text: name,
 			date: date,
-			completed: false
+			completed: false,
+			details: taskDetails.trim() || undefined
 		}
 
 		setTasks([...tasks, task]);
@@ -188,6 +190,7 @@ export default function RichTextEditor(): JSX.Element | null {
 
 	// state variables for inputs
 	const [taskName, setTaskName] = React.useState<string>("");
+  	const [taskDetails, setTaskDetails] = React.useState<string>("");
 	const [taskDate, setTaskDate] = React.useState<DateValue | null>(today(getLocalTimeZone()));
 
 	let formatter = useDateFormatter({dateStyle: "full"});
@@ -207,35 +210,42 @@ export default function RichTextEditor(): JSX.Element | null {
 										tasks.map((task, index) => {
 											return (
 												<Card key={index} className="rounded-md">
-													<CardHeader className="text-2xl">
-														{task.completed ? <s className="text-gray-400">{task.text}</s> : task.text}
-													</CardHeader>
-													<Divider />
-													<CardBody>
+												<CardHeader className="text-2xl">
+													{task.completed ? <s className="text-gray-400">{task.text}</s> : task.text}
+												</CardHeader>
+												<Divider />
+												<CardBody>
+													<div>
 														{task.date ? formatter.format(task.date.toDate(getLocalTimeZone())) : "--"}
-													</CardBody>
-													<CardFooter>
-														<div className="flex gap-x-2">
-															<Button
-																variant="ghost"
-																onPress={() => {
-																	toggleTask(task.id);
-																}}
-																color="success"
-																className="h-6 w-16 rounded-md">
-																	{task.completed ? "Reset" : "Finish"}
-															</Button>
-															<Button
-																variant="ghost"
-																onPress={() => {
-																	deleteTask(task.id);
-																}}
-																color="danger"
-																className="h-6 w-12 rounded-md">
-																Delete
-															</Button>
+													</div>
+													<Divider />
+													{( task.details && ( 
+														<>
+														<div>
+															{task.details}
 														</div>
-													</CardFooter>
+														</>
+													))}
+												</CardBody>
+
+												<CardFooter>
+													<div className="flex gap-x-2">
+													<Button
+														variant="ghost"
+														onPress={() => toggleTask(task.id)}
+														color="success"
+														className="h-6 w-16 rounded-md">
+														{task.completed ? "Reset" : "Finish"}
+													</Button>
+													<Button
+														variant="ghost"
+														onPress={() => deleteTask(task.id)}
+														color="danger"
+														className="h-6 w-12 rounded-md">
+														Delete
+													</Button>
+													</div>
+												</CardFooter>
 												</Card>
 											)
 										}
@@ -265,13 +275,15 @@ export default function RichTextEditor(): JSX.Element | null {
 									id="task-form"
 									onReset={() => {
 										setTaskName("");
+                    setTaskDetails("");
 										setTaskDate(today(getLocalTimeZone()));
 									}}
 									onSubmit={(e) => {
 										e.preventDefault();
-										addTask(taskName, taskDate ?? today(getLocalTimeZone()));
+										addTask(taskName, taskDate ?? today(getLocalTimeZone()), taskDetails);
 										onModalClose();
 										setTaskName("");
+                    setTaskDetails("");
 										setTaskDate(today(getLocalTimeZone()));
 									}}>
 									<Input
@@ -281,6 +293,13 @@ export default function RichTextEditor(): JSX.Element | null {
 										value={taskName}
 										onChange={(e) => setTaskName(e.target.value)}
 										isRequired/>
+                  <Input
+										label="Task Details"
+										labelPlacement="inside"
+										placeholder="Enter Details (optional)"
+										value={taskDetails}
+										onChange={(e) => setTaskDetails(e.target.value)}
+									/>
 								</Form>
 								<DatePicker
 									label="Task Date"
