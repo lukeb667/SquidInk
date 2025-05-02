@@ -505,7 +505,7 @@ export default function RichTextEditor(): JSX.Element | null {
 
 				<Button
 					title="Toggle heading"
-					onPress={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+					onPress={() => editor.chain().focus().toggleHeading({ level: 1 }).setColor(editor.getAttributes('textStyle').color).run()}
 					className={`h-6 !w-6 m-[2px] min-w-0 justify-center rounded-md ${
 						editor.isActive({ level: 1 }) ? 'is-active' : ''
 					}`}
