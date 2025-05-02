@@ -265,7 +265,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				</DrawerContent>
 			</Drawer>
 
-			<Modal isOpen={isModalOpen} onOpenChange={onModalOpenChange} backdrop="blur">
+			<Modal isOpen={isModalOpen} onOpenChange={onModalOpenChange} backdrop="blur" isDismissable={false}>
 				<ModalContent>
 					{(onModalClose) => (
 						<>
