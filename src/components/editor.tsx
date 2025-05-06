@@ -46,10 +46,10 @@ import { MdSave,
 	MdInvertColorsOff,
 	MdColorLens,
 	MdOutlineFontDownload,
-	MdFormatBold, 
+	MdFormatBold,
 	MdFileOpen} from "react-icons/md";
 import { LuHeading1 } from "react-icons/lu";
-import {DateValue, parseDate, getLocalTimeZone, today} from "@internationalized/date";
+import {DateValue, getLocalTimeZone, today} from "@internationalized/date";
 import {useDateFormatter} from "@react-aria/i18n";
 
 import '@/styles/styles.css'
@@ -80,7 +80,7 @@ export default function RichTextEditor(): JSX.Element | null {
 	const editor = useEditor({
 		extensions: [
 			Document, Paragraph, Text, BulletList, OrderedList,
-			ListItem, FontFamily, Bold, Heading, Color, TextStyle, 
+			ListItem, FontFamily, Bold, Heading, Color, TextStyle,
 			Heading,
 
 			TextAlign.configure({
@@ -111,11 +111,11 @@ export default function RichTextEditor(): JSX.Element | null {
 		if (!editor) {
 			return;
 		}
-	
+
 		try {
 			// Invoke the IPC renderer to open a file dialog and get the file content
 			const fileContent = await window.ipcRenderer.invoke("loadFile");
-			
+
 			if (fileContent) {
 				// Parse the JSON content and set it in the editor
 				const content = JSON.parse(fileContent);
@@ -148,7 +148,7 @@ export default function RichTextEditor(): JSX.Element | null {
 	// task array
 	const [tasks, setTasks] = React.useState<Task[]>([]);
 
-	const addTask = (name: string, date: DateValue, details: string) => {
+	const addTask = (name: string, date: DateValue, _details: string) => {
 		const task: Task = {
 			id: Date.now(),
 			text: name,
@@ -185,16 +185,13 @@ export default function RichTextEditor(): JSX.Element | null {
 		console.log(tasks.find(task => task.id === id)!.completed);
 	}
 
-	// form logic
-	const [action, setAction] = React.useState<string | null>(null);
-
 	// state variables for inputs
 	const [taskName, setTaskName] = React.useState<string>("");
   	const [taskDetails, setTaskDetails] = React.useState<string>("");
 	const [taskDate, setTaskDate] = React.useState<DateValue | null>(today(getLocalTimeZone()));
 
 	let formatter = useDateFormatter({dateStyle: "full"});
-	
+
 		return editor? (
 		<>
 			<Drawer isOpen={isDrawerOpen} onOpenChange={onDrawerOpenChange}>
@@ -219,7 +216,7 @@ export default function RichTextEditor(): JSX.Element | null {
 														{task.date ? formatter.format(task.date.toDate(getLocalTimeZone())) : "--"}
 													</div>
 													<Divider />
-													{( task.details && ( 
+													{( task.details && (
 														<>
 														<div>
 															{task.details}
@@ -326,7 +323,7 @@ export default function RichTextEditor(): JSX.Element | null {
 					)}
 				</ModalContent>
 			</Modal>
-						
+
 
 		<div className={theme}>
 			<div
@@ -453,7 +450,7 @@ export default function RichTextEditor(): JSX.Element | null {
 				/>
 
 				<div className="inline-flex m-[2px]">
-					<Button 
+					<Button
 						title= "Left align"
 						ref={mainButtonRef}
 						className="h-6 min-w-0 rounded-l-md rounded-r-none m-0 border-r-0"
@@ -467,9 +464,9 @@ export default function RichTextEditor(): JSX.Element | null {
 						portalContainer={document.body}
 					>
 						<DropdownTrigger>
-							<Button 
+							<Button
 								title= "Choose a text alignment"
-								isIconOnly 
+								isIconOnly
 								className="h-6 !w-6 min-w-0 rounded-r-md rounded-l-none m-0 border-l-0"
 							>
 								<ChevronDownIcon />
@@ -544,9 +541,9 @@ export default function RichTextEditor(): JSX.Element | null {
 				<Button onPress={onDrawerOpen} className="flex absolute right-2 h-6 w-12 rounded-md">Tasks</Button>
 
 			</div>
-				<div className="flex justify-center items-center p-5">
+				<div className="flex justify-center items-center max-h-3/4 my-auto">
 					<EditorContent
-						className="prose w-full h-full overflow-auto marker:text-inherit bg-default-50"
+						className="prose w-full h-full max-h-screen marker:text-inherit bg-default-50"
 						editor={editor}
 					/>
 				</div>
