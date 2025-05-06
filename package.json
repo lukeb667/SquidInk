@@ -21,6 +21,8 @@
     "@heroui/system": "^2.4.13",
     "@heroui/theme": "^2.4.13",
     "@heroui/use-theme": "^2.1.6",
+    "@internationalized/date": "^3.8.0",
+    "@react-aria/i18n": "^3.12.8",
     "@tiptap/extension-bold": "^2.11.7",
     "@tiptap/extension-bullet-list": "^2.11.7",
     "@tiptap/extension-color": "^2.11.7",
