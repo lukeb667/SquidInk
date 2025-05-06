@@ -3,12 +3,38 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "description": "A simple and elegant text editor and task list",
+  "productName": "Squid Ink",
+  "author": {
+    "name": "Luke Becker, Simon Ramsey, Ryan Smith, Gareth Wright"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "postinstall": "node node_modules/electron/install.js"
+  },
+  "build": {
+    "appId": "com.squidink.app",
+    "productName": "Squid Ink",
+    "files": [
+      "dist-electron/**/*",
+      "dist/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/",
+        "to": "assets/"
+      }
+    ],
+    "asarUnpack": "**/node_modules/@heroui/**",
+    "asar": true,
+    "publish": {
+      "provider": "github",
+      "owner": "squid-ink",
+      "repo": "squid-ink"
+    }
   },
   "dependencies": {
     "@heroui/button": "^2.2.16",
