@@ -102,7 +102,7 @@ ipcMain.handle("saveFile", async (_event: Electron.IpcMainInvokeEvent, data: str
 	await file.writeFile(data);
 });
 
-ipcMain.handle('loadFile', async (event) => {
+ipcMain.handle('loadFile', async () => {
 	try {
 	  // Open file dialog
 	  const { canceled, filePaths } = await dialog.showOpenDialog({
@@ -112,14 +112,14 @@ ipcMain.handle('loadFile', async (event) => {
 		  { name: 'All Files', extensions: ['*'] }
 		]
 	  });
-  
+
 	  if (canceled || filePaths.length === 0) {
 		return null;
 	  }
-  
+
 	  const filePath = filePaths[0];
 	  const fileContent = fs.readFileSync(filePath, 'utf-8');
-	  
+
 	  return fileContent;
 	} catch (error) {
 	  console.error('Error loading file:', error);
