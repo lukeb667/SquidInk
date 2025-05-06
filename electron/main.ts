@@ -41,7 +41,7 @@ let win: BrowserWindow | null;
 function createWindow() {
 	win = new BrowserWindow({
 		title: "Squid Ink",
-		icon: path.join(__dirname, "..", "public", "squid-ink-logo.png"),
+		icon: path.join(__dirname, "..", "public", "squid-ink-logo.ico"),
 		width: 1920,
 		height: 1080,
 		webPreferences: {

@@ -11,6 +11,7 @@ type Task = {
 export default function TaskTracker() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState('');
+  //const [softDate, setSoftDate] = useState('');
   const [taskDetails, setTaskDetails] = useState('');
 
   const addTask = () => {
@@ -20,12 +21,14 @@ export default function TaskTracker() {
       id: Date.now(),
       text: newTask,
       completed: false,
+      //softDate: softDate.trim() || undefined,
       details: taskDetails.trim() || undefined
     };
     
     setTasks([...tasks, task]);
     setNewTask('');
     setTaskDetails('');
+    //setSoftDate('');
   };
 
   const toggleTask = (id: number) => {
@@ -61,7 +64,6 @@ export default function TaskTracker() {
       
       <ul className="task-list">
         {tasks.map(task => {
-          //console.log("It got to here: " + task.details);
           return (
           <li key={task.id} className={task.completed ? 'completed' : ''}>
             <span onClick={() => toggleTask(task.id)}>

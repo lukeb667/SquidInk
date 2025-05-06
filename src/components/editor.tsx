@@ -71,7 +71,8 @@ type Task = {
 	text: string;
 	date: DateValue;
 	completed: boolean;
-  details?: string;
+  	details?: string;
+	softDate?: DateValue;
 };
 
 export default function RichTextEditor(): JSX.Element | null {
@@ -148,13 +149,14 @@ export default function RichTextEditor(): JSX.Element | null {
 	// task array
 	const [tasks, setTasks] = React.useState<Task[]>([]);
 
-	const addTask = (name: string, date: DateValue, _details: string) => {
+	const addTask = (name: string, date: DateValue, _details: string, softDate: DateValue) => {
 		const task: Task = {
 			id: Date.now(),
 			text: name,
 			date: date,
 			completed: false,
-			details: taskDetails.trim() || undefined
+			details: taskDetails.trim() || undefined,
+			softDate: softDate || undefined
 		}
 
 		setTasks([...tasks, task]);
@@ -189,6 +191,7 @@ export default function RichTextEditor(): JSX.Element | null {
 	const [taskName, setTaskName] = React.useState<string>("");
   	const [taskDetails, setTaskDetails] = React.useState<string>("");
 	const [taskDate, setTaskDate] = React.useState<DateValue | null>(today(getLocalTimeZone()));
+	const [taskSoftDate, setTaskSoftDate] = React.useState<DateValue | null>(today(getLocalTimeZone()));
 
 	let formatter = useDateFormatter({dateStyle: "full"});
 
@@ -223,6 +226,10 @@ export default function RichTextEditor(): JSX.Element | null {
 														</div>
 														</>
 													))}
+													<Divider />
+													<div>
+														{task.softDate ? formatter.format(task.softDate.toDate(getLocalTimeZone())) : "--"}
+													</div>
 												</CardBody>
 
 												<CardFooter>
@@ -274,14 +281,16 @@ export default function RichTextEditor(): JSX.Element | null {
 										setTaskName("");
                     setTaskDetails("");
 										setTaskDate(today(getLocalTimeZone()));
+										setTaskSoftDate(today(getLocalTimeZone()));
 									}}
 									onSubmit={(e) => {
 										e.preventDefault();
-										addTask(taskName, taskDate ?? today(getLocalTimeZone()), taskDetails);
+										addTask(taskName, taskDate ?? today(getLocalTimeZone()), taskDetails, taskSoftDate ?? today(getLocalTimeZone()));
 										onModalClose();
 										setTaskName("");
                     setTaskDetails("");
 										setTaskDate(today(getLocalTimeZone()));
+										setTaskSoftDate(today(getLocalTimeZone()));
 									}}>
 									<Input
 										label="Task Name"
@@ -303,6 +312,11 @@ export default function RichTextEditor(): JSX.Element | null {
 									value={taskDate}
 									onChange={(date) => setTaskDate(date)}
 									isRequired
+									/>
+								<DatePicker
+									label="Soft Task Date (optional)"
+									value={taskSoftDate}
+									onChange={(softDate) => setTaskSoftDate(softDate)}
 									/>
 								<Button
 									form="task-form"
